@@ -1,0 +1,28 @@
+<h2 class="side-space15"> 
+  My Routes
+  <button class="btn btn-success" (click)="createRoute();" placement="bottom" ngbTooltip="Create New Route" >
+    <i class="fa fa-plus"></i>
+  </button>
+  
+</h2>
+<hr style="padding:0px !important;margin:0px !important;"/>
+<!--Course List -->
+<div class="route-list list-group">
+  <div class="list-group-item" *ngFor="let route of routesObservable | async">
+    <div class="route-item-data" >
+          <span class="pull-left route-item-name">
+              <strong>{{route.Name}}</strong>
+          </span>
+          <span class=" route-item-distance">{{route.Distance|number}} <strong>Mi</strong>
+          </span>
+          <span class="pull-left register-item-address" ng-show="type.TimeProject && type.TimeProject != ''">
+            Address: {{route.Address}}
+          </span>
+      </div>
+  
+    <div class="route-item-menu" >
+        <i class="fa fa-pencil btn btn-success" (click)="editRoute(route);"></i>
+        <i class="fa fa-remove btn btn-danger" (click)="deleteRoute(route);"></i>
+    </div>
+  </div>
+ </div>

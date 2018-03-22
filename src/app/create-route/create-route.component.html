@@ -1,0 +1,47 @@
+<div class="side-space15">
+  <form *ngIf="this.loading" class="loading-animation">
+    <img src="assets/loading.gif"><img>
+  </form>
+  <form *ngIf="!this.loading">
+    <div class="form-group">
+        <input type="text" class="form-control" id="address"  [(ngModel)]="address" placeholder="search address" name="address" /> 
+    </div>
+    <div class="form-group pull-left" style="width:80vw;">
+        <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="name" name="name" />
+      
+    </div>
+    
+    <div class="form-group pull-right" style="width:10vw;" >
+      <button class="btn btn-block btn-primary " (click)="searchAddress();"><i class="fa fa-x fa-search"></i></button>
+    </div>
+    <div class="form-group pull-left" style="width:100%;">
+      <strong>Distance:</strong> {{this.distance|number}} miles
+     </div>
+    <div class="form-group pull-left" style="width:46vw;" >
+      <button class="btn btn-block btn-danger " (click)="clearRoute();"><i class="fa fa-x fa-times-circle padding-5" ></i> Clear</button>
+    </div>
+    <div class="form-group pull-right" style="width:45vw;" >
+      <button class="btn btn-block btn-warning " (click)="clearLastMarker();"><i class="fa fa-x fa-undo padding-5"></i> Undo last point</button>
+    </div>
+    <div class="form-group " >
+      <button class="btn btn-block btn-success " (click)="saveRoute();"><i class="fa fa-x fa-save padding-5"></i> Save Route</button>
+    </div>
+    <p *ngIf="this.error && this.error != ''">
+      <ngb-alert type="danger" [dismissible]="false">
+        <strong>Error!</strong> {{error}}.
+      </ngb-alert>
+    </p>
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)" (mapReady)="mapReady($event)">
+        <agm-marker *ngFor="let m of startmarkers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable">
+            
+           
+        </agm-marker>
+        <agm-polyline  [strokeColor]="'#2196f3'">
+            <ng-container *ngFor="let i of markers">
+              <agm-polyline-point  [latitude]="i.lat" [longitude]="i.lng">
+              </agm-polyline-point>
+            </ng-container>
+        </agm-polyline>
+     </agm-map>
+  </form>
+</div>
