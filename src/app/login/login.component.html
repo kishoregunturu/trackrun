@@ -1,0 +1,12 @@
+<div class="login-div" *ngIf="!authService.signed">
+  <div class="list-group text-center">
+      
+      <div class="list-group-item list-group-item-home div-google">
+          <img src="assets/g-normal.png" (click)="googleLogin();"/>
+      </div>
+      <!-- <div class="list-group-item list-group-item-home div-google">
+        
+            <img src="assets/facebook.png"  (click)="facebookLogin();"/>
+      </div> -->
+  </div>
+</div>

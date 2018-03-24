@@ -7,6 +7,8 @@ import { MapService } from '../services/map.service';
 import { FirebaseService } from '../services/firebase.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ReadVarExpr } from '@angular/compiler';
+import { AuthService} from '../services/auth.service';
+
 @Component({
   templateUrl: './create-route.component.html'
 })
@@ -22,8 +24,10 @@ export class CreateRouteComponent implements OnInit {
   markers: marker[] = [];
   startmarkers: marker[] = [];
   key: string;
-  constructor(private dbService: FirebaseService, private mapService: MapService, private __zone: NgZone, private router: Router, private route: ActivatedRoute) {
-
+  constructor(private dbService: FirebaseService, private mapService: MapService, private __zone: NgZone, private router: Router, 
+    private route: ActivatedRoute,private  loginService:AuthService) {
+      console.log('test');
+     
   }
 
   ngOnInit() {
@@ -31,7 +35,7 @@ export class CreateRouteComponent implements OnInit {
     this.key = this.route.snapshot.paramMap.get('id');
     if (this.key) {
       
-      var r = this.dbService.getRoute('/routes/12345', this.key).subscribe((route) => {
+      var r = this.dbService.getRoute('/routes/' + this.loginService.User.UserId, this.key).subscribe((route) => {
         if (route.Name && route.Address){
           console.log('Current Route: ', route);
           console.log('this',this);
@@ -58,14 +62,7 @@ export class CreateRouteComponent implements OnInit {
 
   mapClicked($event: MouseEvent) {
     console.log('marker', $event);
-    if (this.markers.length == 0) {
-      this.startmarkers.push({
-        lat: $event.coords.lat,
-        lng: $event.coords.lng,
-        draggable: true
-      });
-      this.getAddress();
-    }
+    if (this.markers.length > 0) {
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -73,6 +70,26 @@ export class CreateRouteComponent implements OnInit {
     });
     if (this.markers.length > 1)
       this.distance += this.mapService.getDistanceBetweenPoints(this.markers[this.markers.length - 1], this.markers[this.markers.length - 2]);
+  }
+}
+
+  mapdblClick($event: MouseEvent) {
+    console.log('marker', $event);
+    if (this.markers.length == 0) {
+      this.startmarkers.push({
+        lat: $event.coords.lat,
+        lng: $event.coords.lng,
+        draggable: true
+      });
+      this.getAddress();
+    
+    this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      draggable: true
+    });
+  }
+   
   }
 
   searchAddress() {
@@ -157,10 +174,10 @@ export class CreateRouteComponent implements OnInit {
       console.log('edit');
       console.log('Route saved-', r);
       r.key = this.key;
-      this.dbService.editRoute('/routes/12345', r);
+      this.dbService.editRoute('/routes/' + this.loginService.User.UserId, r);
     } else {
       console.log('Route saved-', r);
-      this.dbService.addRoutes('/routes/12345', r);
+      this.dbService.addRoutes('/routes/' + this.loginService.User.UserId, r);
     }
     this.loading = false;
     this.router.navigate(['/run-route']);

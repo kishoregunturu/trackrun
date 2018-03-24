@@ -4,7 +4,26 @@
   <meta charset="utf-8">
   <title>Trackrun</title>
   <base href="/">
-
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '566820867025502',
+        xfbml      : true,
+        version    : 'v2.12'
+      });
+      FB.AppEvents.logPageView();
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -12,4 +31,5 @@
 <body>
   <app-root></app-root>
 </body>
+
 </html>

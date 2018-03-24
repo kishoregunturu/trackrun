@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  clientId:'895263913919-vt3dg70534hiupkum6t9jqnnqu3fsc11.apps.googleusercontent.com',
   firebase: {
     apiKey: "AIzaSyD8j9gPfxCIqpqKFNsaxNV27_dtCAN6sbk",
     authDomain: "track-run.firebaseapp.com",

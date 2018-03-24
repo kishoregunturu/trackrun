@@ -17,6 +17,9 @@
     <div class="form-group pull-left" style="width:100%;">
       <strong>Distance:</strong> {{this.distance|number}} miles
      </div>
+     <div class="form-group pull-left" style="width:100%;">
+      *Double click on start location to start the route and click on the path to continue the route.
+     </div>
     <div class="form-group pull-left" style="width:46vw;" >
       <button class="btn btn-block btn-danger " (click)="clearRoute();"><i class="fa fa-x fa-times-circle padding-5" ></i> Clear</button>
     </div>
@@ -31,7 +34,7 @@
         <strong>Error!</strong> {{error}}.
       </ngb-alert>
     </p>
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)" (mapReady)="mapReady($event)">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)" (mapDblClick)="mapdblClick($event)" (mapReady)="mapReady($event)">
         <agm-marker *ngFor="let m of startmarkers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable">
             
            

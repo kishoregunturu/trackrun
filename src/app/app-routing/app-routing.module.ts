@@ -4,9 +4,11 @@ import { AppComponent } from '../app.component'
 import { RunRouteComponent } from '../run-route/run-route.component'
 import { CreateRouteComponent } from '../create-route/create-route.component'
 import { ActivityComponent } from '../activity/activity.component'
+import { LoginComponent } from '../login/login.component'
 
 const appRoutes: Routes = [
   { path: 'run-route', component:RunRouteComponent },
+  { path: 'login', component:LoginComponent },
   { path: 'create-route', component:CreateRouteComponent },
   { path: 'edit-route/:id', component:CreateRouteComponent },
   { path: 'home', component:RunRouteComponent },

@@ -16,6 +16,8 @@ import { CreateRouteComponent } from './create-route/create-route.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapService } from './services/map.service';
 import { FirebaseService } from './services/firebase.service';
+import { LoginComponent } from './login/login.component';
+import {AuthService} from './services/auth.service';  
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { FirebaseService } from './services/firebase.service';
     AppNavbarComponent,
     RunRouteComponent,
     ActivityComponent,
-    CreateRouteComponent
+    CreateRouteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { FirebaseService } from './services/firebase.service';
       apiKey: 'AIzaSyDtQGPB1JkcBOWbD0xMO_yoJkEeDAJ169o'
     })
   ],
-  providers: [MapService,FirebaseService],
+  providers: [MapService,FirebaseService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -122,6 +122,69 @@ margin-right: 15px;
 margin-left: 15px;
 }
 
+/**login **/
+.login-div {
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+  width:100%;
+  display: inline-block;
+}
+
+
+@media (min-width: 768px)
+{
+  .login-div {
+    width:500px;
+    displaY:block;
+  }
+}
+
+.logo-hdr{
+ background-color:  #343a40 !important
+}
+
+.btn-google{
+  padding:0px !important;
+  font-size:1.1em;
+}
+
+.div-google img{
+  width:100%;
+  cursor: pointer;
+}
+
+.btn-google span {
+  vertical-align: middle;
+}
+
+
+.btn-facebook span {
+  vertical-align: middle;
+}
+
+.profile-info{
+
+}
+
+.profile-info img {
+  width: 50px;
+  /* padding-left: 30px; */
+  border-radius: 25px;
+}
+
+.btn-facebook{
+  background-color: #4267b2;
+  padding:0px !important;
+  font-size:1.1em;
+}
+
+.btn-facebook img{
+  float:left;
+  width:39px;
+}
+
 /*** Styling for Routes **/
 
 div.route-list .list-group-item:nth-child(even) {
