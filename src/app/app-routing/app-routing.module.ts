@@ -5,14 +5,15 @@ import { RunRouteComponent } from '../run-route/run-route.component'
 import { CreateRouteComponent } from '../create-route/create-route.component'
 import { ActivityComponent } from '../activity/activity.component'
 import { LoginComponent } from '../login/login.component'
+import {AuthService} from '../services/auth.service';
 
 const appRoutes: Routes = [
-  { path: 'run-route', component:RunRouteComponent },
+  { path: 'run-route', component:RunRouteComponent, canLoad:[AuthService] },
   { path: 'login', component:LoginComponent },
-  { path: 'create-route', component:CreateRouteComponent },
-  { path: 'edit-route/:id', component:CreateRouteComponent },
-  { path: 'home', component:RunRouteComponent },
-  { path: '**', component: RunRouteComponent }
+  { path: 'create-route', component:CreateRouteComponent, canLoad:[AuthService] },
+  { path: 'edit-route/:id', component:CreateRouteComponent, canLoad:[AuthService] },
+  { path: 'home', component:RunRouteComponent, canLoad:[AuthService] },
+  { path: '**', component: RunRouteComponent , canLoad:[AuthService]}
 ];
 
 @NgModule({

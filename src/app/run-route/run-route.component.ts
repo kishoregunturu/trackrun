@@ -12,8 +12,7 @@ export class RunRouteComponent implements OnInit {
 
   routesObservable: Observable<any[]>;
   constructor(private router: Router, private dbService:FirebaseService,private  loginService:AuthService, private __zone: NgZone) {
-    if (!this.loginService.signed)
-     this.router.navigate(['/login']);
+    
   }
 //init method to load the routes from DB
   ngOnInit() {
