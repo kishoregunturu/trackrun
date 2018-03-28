@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit, NgZone } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from "@angular/router";
@@ -21,8 +21,10 @@ export class LoginComponent implements AfterViewInit {
 
   public auth2: any;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService, private router: Router,private __zone:NgZone) {
   }
+
+  
 
   ngAfterViewInit() {
     console.log('gapi loaed:',gapi);
@@ -46,7 +48,7 @@ export class LoginComponent implements AfterViewInit {
         Name: resp.getBasicProfile().getGivenName() + ' ' + resp.getBasicProfile().getFamilyName()
       }
        console.log(comp.authService.User);
-       comp.router.navigate(['/run-route']);
+       comp.__zone.run(() => comp.router.navigate(['/run-route']));
      }).then(function(err){
     });
   }

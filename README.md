@@ -3,6 +3,11 @@
 This project was developed using Angular5, nodeJs, Boostrap 4 and firebase as backend technology. 
 This project lets you draw your running/jogging routes to keep track of distance and run activity
 
+## Demo
+
+You can access the webiste through https://track-run.firebaseapp.com
+The webiste is responsive to all devices
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

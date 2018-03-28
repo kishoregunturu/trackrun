@@ -9,8 +9,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 
 export class AppNavbarComponent implements OnInit {
-
-  constructor(private  loginService:AuthService,private route:Router) { }
+  public isNavbarCollapsed:Boolean;
+  constructor(public  loginService:AuthService,private route:Router) { }
 
   ngOnInit() {
   }
