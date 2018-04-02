@@ -56,13 +56,32 @@ export class CreateRouteComponent implements OnInit {
           this.loading = false;
         }});
     } else {
-      this.loading = false;
+      var c = this;
+      if (navigator.geolocation) {
+        if (navigator.geolocation) {
+            var geo_options = {
+                enableHighAccuracy: true,
+                maximumAge: 30000,
+                timeout: 27000
+            };
+            navigator.geolocation.getCurrentPosition(function(r){
+              console.log('t',r);
+              c.lat = r.coords.latitude;
+              c.lng = r.coords.longitude;
+              c.zoom = 14;
+              c.loading = false;
+            }, function(t){
+              console.log('t',t);
+              c.loading = false;
+            }, geo_options);
+        }
+    }
     }
   }
 
   mapClicked($event: MouseEvent) {
     console.log('marker', $event);
-    if (this.markers.length > 0) {
+  if (this.markers.length > 0) {
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -81,14 +100,14 @@ export class CreateRouteComponent implements OnInit {
         lng: $event.coords.lng,
         draggable: true
       });
+      this.markers.push({
+        lat: $event.coords.lat,
+        lng: $event.coords.lng,
+        draggable: true
+      });
       this.getAddress();
+    }
     
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: true
-    });
-  }
    
   }
 
@@ -180,7 +199,7 @@ export class CreateRouteComponent implements OnInit {
       this.dbService.addRoutes('/routes/' + this.loginService.User.UserId, r);
     }
     this.loading = false;
-    this.router.navigate(['/run-route']);
+    this.__zone.run(() => this.router.navigate(['/run-route']));
   }
 
   markerDragEnd(m: marker, $event: MouseEvent) {

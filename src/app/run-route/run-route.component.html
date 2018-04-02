@@ -1,3 +1,4 @@
+
 <h2 class="side-space15"> 
   My Routes
   <button class="btn btn-success" (click)="createRoute();" placement="bottom" ngbTooltip="Create New Route" >
@@ -7,7 +8,7 @@
 </h2>
 <hr style="padding:0px !important;margin:0px !important;"/>
 <!--Course List -->
-<div class="route-list list-group">
+<div class="route-list list-group" *ngIf="!loading">
   <div class="list-group-item" *ngFor="let route of routesObservable | async">
     <div class="route-item-data" >
           <span class="pull-left route-item-name">
@@ -26,3 +27,5 @@
     </div>
   </div>
  </div>
+
+ <i class="fa fa-cog fa-spin fa-3x fa-fw loading" *ngIf="loading" ></i>

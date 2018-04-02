@@ -9,15 +9,31 @@ import { AuthService} from '../services/auth.service';
 })
 
 export class RunRouteComponent implements OnInit {
-
+  loading:Boolean = true;
   routesObservable: Observable<any[]>;
   constructor(private router: Router, private dbService:FirebaseService,private  loginService:AuthService, private __zone: NgZone) {
     
   }
 //init method to load the routes from DB
   ngOnInit() {
+    
     this.routesObservable = this.dbService.getRoutes('/routes/' + this.loginService.User.UserId);
-  }
+    this.routesObservable.subscribe(result => {
+        this.__zone.run(() => {
+         this.loading = false;
+        })
+      }, (err => {
+        console.log('test');
+        this.__zone.run(() => {
+          this.loading = false;
+
+         })
+      }
+   ));
+
+   //setInterval(this.loading = false, 1000);
+  
+}
 
   
 //event for the create route
@@ -28,7 +44,7 @@ export class RunRouteComponent implements OnInit {
 
 //edit route
 editRoute($event:any){
-  this.router.navigate(['/edit-route/' + $event.key]); 
+  this.__zone.run(() => this.router.navigate(['/edit-route/' + $event.key])); 
 }
 
   //delete route

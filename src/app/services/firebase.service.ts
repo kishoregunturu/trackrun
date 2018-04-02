@@ -11,9 +11,17 @@ export class FirebaseService {
   constructor(private db: AngularFireDatabase){ }
 
   getRoutes(listPath:string): Observable<RouteMap[]> {
-    return this.db.list(listPath).snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    });
+    try{
+      var list = this.db.list(listPath).snapshotChanges();
+      console.log('list',list);
+
+      return list.map(changes => {
+        console.log('test');
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      });
+    }catch{
+      console.log('error');
+    }
   }
 
   getRoute(listPath:string,key:string):Observable<RouteMap>{

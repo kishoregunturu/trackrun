@@ -1,6 +1,6 @@
-<div class="side-space15">
-  <form *ngIf="this.loading" class="loading-animation">
-    <img src="assets/loading.gif"><img>
+<div class="side-space5">
+  <form *ngIf="this.loading" >
+      <i class="fa fa-cog fa-spin fa-3x fa-fw loading"  ></i>
   </form>
   <form *ngIf="!this.loading">
     <div class="form-group">
@@ -18,7 +18,7 @@
       <strong>Distance:</strong> {{this.distance|number}} miles
      </div>
      <div class="form-group pull-left" style="width:100%;">
-      *Double click on start location to start the route and click on the path to continue the route.
+      *Double click on the map to draw your route and click to continue the route.
      </div>
     <div class="form-group pull-left" style="width:46vw;" >
       <button class="btn btn-block btn-danger " (click)="clearRoute();"><i class="fa fa-x fa-times-circle padding-5" ></i> Clear</button>
